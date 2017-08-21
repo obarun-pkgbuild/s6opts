@@ -2,7 +2,7 @@
 
 pkgname=s6opts
 pkgver=0.1.7
-pkgrel=3
+pkgrel=4
 pkgdesc='A scripts to provide option for s6 software'
 url='https://github.com/Obarun/s6opts.git'
 arch=(x86_64)
@@ -11,7 +11,7 @@ groups=(s6-suite)
 depends=('s6-boot' 's6-rc' 's6' 'obarun-libs')
 makedepends=('git')
 backup=('etc/obarun/s6opts.conf')
-_commit=cb32144f7c5c7bf0897eaa20663f93827dc1b51b # tag 0.1.7 change repo of log.d file
+_commit=ad0313e5e55fce4b3d32a34802207cae2abb6691 # tag 0.1.7 bug free before passing to dev branch
 source=("${pkgname}::git+${url}#commit=$_commit")
 sha1sums=('SKIP')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
