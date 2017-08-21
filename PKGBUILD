@@ -2,7 +2,7 @@
 
 pkgname=s6opts
 pkgver=0.1.7
-pkgrel=1
+pkgrel=2
 pkgdesc='A scripts to provide option for s6 software'
 url='https://github.com/Obarun/s6opts.git'
 arch=(x86_64)
@@ -56,6 +56,9 @@ package() {
 	# create directory for hook
 	install -dm 0755 "$pkgdir/etc/s6-serv/log.d/rc"
 	install -dm 0755 "$pkgdir/etc/s6-serv/log.d/serv"
+	
+	#install the hook itself
+	install -Dm 0644 "$srcdir/$pkgname/s6logd.hook" "$pkgdir/usr/share/libalpm/hooks/s6logd.hook"
 	
 	# Install the licence
 	install -Dm 0644 "$srcdir/$pkgbase/LICENSE" "$pkgdir/usr/share/licenses/$pkgname"
