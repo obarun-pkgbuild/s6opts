@@ -2,7 +2,7 @@
 
 pkgname=s6opts
 pkgver=0.1.7
-pkgrel=2
+pkgrel=3
 pkgdesc='A scripts to provide option for s6 software'
 url='https://github.com/Obarun/s6opts.git'
 arch=(x86_64)
@@ -11,7 +11,7 @@ groups=(s6-suite)
 depends=('s6-boot' 's6-rc' 's6' 'obarun-libs')
 makedepends=('git')
 backup=('etc/obarun/s6opts.conf')
-_commit=4a325f8e7ebe908db85497eed84d94b6f95bc680 # tag 0.1.7
+_commit=cb32144f7c5c7bf0897eaa20663f93827dc1b51b # tag 0.1.7 change repo of log.d file
 source=("${pkgname}::git+${url}#commit=$_commit")
 sha1sums=('SKIP')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
@@ -54,8 +54,7 @@ package() {
 	install -Dm 0644 "$srcdir/$pkgname/s6opts.1.gz" "$pkgdir/usr/share/man/man1/s6opts.1.gz"
 	
 	# create directory for hook
-	install -dm 0755 "$pkgdir/etc/s6-serv/log.d/rc"
-	install -dm 0755 "$pkgdir/etc/s6-serv/log.d/serv"
+	install -dm 0755 "$pkgdir/etc/s6-serv/log.d/"
 	
 	#install the hook itself
 	install -Dm 0644 "$srcdir/$pkgname/s6logd.hook" "$pkgdir/usr/share/libalpm/hooks/s6logd.hook"
