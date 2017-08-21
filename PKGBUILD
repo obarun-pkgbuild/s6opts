@@ -1,7 +1,7 @@
 # Maintainer Eric Vidal <eric@obarun.org>
 
 pkgname=s6opts
-pkgver=0.1.6
+pkgver=0.1.7
 pkgrel=1
 pkgdesc='A scripts to provide option for s6 software'
 url='https://github.com/Obarun/s6opts.git'
@@ -10,7 +10,9 @@ license=('BEERWARE')
 groups=(s6-suite)
 depends=('s6-boot' 's6-rc' 's6' 'obarun-libs')
 makedepends=('git')
-source=("${pkgname}::git+${url}#tag=v${pkgver}")
+backup=('etc/obarun/s6opts.conf')
+_commit=4a325f8e7ebe908db85497eed84d94b6f95bc680 # tag 0.1.7
+source=("${pkgname}::git+${url}#commit=$_commit")
 sha1sums=('SKIP')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
 
@@ -33,8 +35,9 @@ package() {
 	install -dm 0755 "$pkgdir/usr/share/obarun/s6opts/base-s6serv"
 	install -dm 0755 "$pkgdir/usr/share/obarun/s6opts/base-s6serv/log"
 	install -Dm 0644 "$srcdir/$pkgname/base-s6serv/log/run" "$pkgdir/usr/share/obarun/s6opts/base-s6serv/log"
-
-	for i in base-s6serv/{down,finish,notification-fd,nosetsid,run,timeout-finish}; do
+	install -Dm 0644 "$srcdir/$pkgname/base-s6serv/log/logd" "$pkgdir/usr/share/obarun/s6opts/base-s6serv/log"
+	
+	for i in base-s6serv/{down,finish,nosetsid,notification-fd,run,timeout-finish,timeout-kill}; do
 		install -Dm 0644 "${i}" "$pkgdir/usr/share/obarun/s6opts/${i}"
 	done
 	
@@ -49,6 +52,10 @@ package() {
 	done
 	# install man page
 	install -Dm 0644 "$srcdir/$pkgname/s6opts.1.gz" "$pkgdir/usr/share/man/man1/s6opts.1.gz"
+	
+	# create directory for hook
+	install -dm 0755 "$pkgdir/etc/s6-serv/log.d/rc"
+	install -dm 0755 "$pkgdir/etc/s6-serv/log.d/serv"
 	
 	# Install the licence
 	install -Dm 0644 "$srcdir/$pkgbase/LICENSE" "$pkgdir/usr/share/licenses/$pkgname"
