@@ -14,7 +14,7 @@ backup=('etc/obarun/s6opts.conf'
 		'etc/s6-serv/enabled/rc/compiled/current' 'etc/s6-serv/enabled/rc/compiled/previous'
 		'etc/s6-serv/enabled/rc/compiled/Default.src')
 _commit=c0b639668fad2c69959d59ef436fb2d7ce3aac24 # tag 0.1.8 
-source=("${pkgname}::git+${url}#_commit=$_commit")
+source=("${pkgname}::git+${url}#commit=$_commit")
 sha1sums=('SKIP')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
 
