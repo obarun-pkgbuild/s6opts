@@ -1,7 +1,7 @@
 # Maintainer Eric Vidal <eric@obarun.org>
 
 pkgname=s6opts
-pkgver=0.2.0
+pkgver=0.2.1
 pkgrel=1
 pkgdesc='A scripts to provide option for s6 software'
 url='https://github.com/Obarun/s6opts.git'
